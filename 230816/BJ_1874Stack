@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        //Set<Integer> s = new HashSet<>(); set 사용하면 시간초과 
+        boolean[] arr = new boolean[T+1]; // arr로 들어간 수 인지 체크
+        int max = 0;
+        boolean flag = true;
+        for (int i = 0; i < T; i++) {
+            int num = Integer.parseInt(br.readLine());
+            if(max<num) {   // 지금까지 최대 수 보다 큰 수라면 그 수까지 push
+                for (int a = max+1; a <= num; a++) {
+                    sb.append("+\n");
+                }
+                max = num;
+            }
+            else {  // pop 해야하는데, 이전에 존재했거나 현재 수여야 Yes 상태임.
+                for(int k = max-1; k>num;k--){
+                    if(!arr[k]) flag = false;
+                }
+            }
+            sb.append("-\n"); // 결국엔 다 pop 해야하니깐,,,
+            arr[num] = true; 
+        }
+        if(!flag) System.out.println("NO");
+        else System.out.println(sb);
+    }
+}
