@@ -2,35 +2,33 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static int N,K,input[],arr[],min,dis[];
+    static int N,K,input[],arr[],sum,dis[];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
         K = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
         Set<Integer> set = new HashSet<>();
-        for (int i = 0; i < N ; i++) {
+        for (int i = 0; i < N ; i++) //중복 제거
             set.add(Integer.parseInt(st.nextToken()));
-        }
-        if(N<=K){
-            System.out.println(0); return;
-        }
-        input = new int[K];
+        
+        if(N<=K) { System.out.println(0); return;} //센서가 더 많거나 같을 때.
+        
         arr = new int[set.size()]; int i = 0;
-        for (int s : set) {
+        for (int s : set) // set의 값을 배열에 저장
             arr[i++] = s;
-        }
-        Arrays.sort(arr);
+       
+        Arrays.sort(arr); 
         dis = new int[arr.length-1];
         dis[0] = arr[1]-arr[0];
-        for (int j = 1; j < arr.length-1; j++) {
+        for (int j = 1; j < arr.length-1; j++) // edge 간의 거리 저장
             dis[j] = arr[j+1]-arr[j];
-        }
+        
         Arrays.sort(dis);
-        int sum=0;
-        for (int j = 0; j < arr.length-K; j++) {
+
+        for (int j = 0; j < arr.length-K; j++) 
             sum += dis[j];
-        }
+        
         System.out.println(sum);
     }
 //    static void select(int cnt,int start) {
