@@ -28,25 +28,25 @@ public class BJ_12101 {
 			else cnt[i] = cnt[i-1] + cnt[i-2] + cnt[i-3];
 		}
 	}
-	private static void recursive(int n) {
+	private static void recursive(int n) { //n은 수의 합 K는 순서
 		if(n==1&&K==1) 
 				sb.append("1");
 		else if(n==2&&K==2) 
 				sb.append("2");
 		else if(n==3&&K==4) 
-				sb.append("3");
-		else if(K<=cnt[n-1]) {
-			sb.append("1+");
-			recursive(n-1);
+				sb.append("3"); //마지막 토큰들,,,,,,
+		else if(K<=cnt[n-1]) {  
+			sb.append("1+");  
+			recursive(n-1);  // 맨 앞에 1을 붙일 경우
 		}
-		else if(K<=cnt[n-1]+cnt[n-2]) {
+		else if(K<=cnt[n-1]+cnt[n-2]) { 
 			sb.append("2+");
 			K -= cnt[n-1];
-			recursive(n-2);
+			recursive(n-2);  // 맨 앞에 2을 붙일 경우
 		}else {
 			sb.append("3+");
 			K -= cnt[n-1] + cnt[n-2];
-			recursive(n-3);
+			recursive(n-3);  // 맨 앞에 3을 붙일 경우
 		}
 	}
 
