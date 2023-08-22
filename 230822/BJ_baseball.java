@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     static int[][] inning;
     static int[] input = new int[]{1,2,3,0,4,5,6,7,8};
-    static boolean[] isvisited=new boolean[9];
+    //static boolean[] isvisited=new boolean[9];
     static int T, max = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,23 +21,7 @@ public class Main {
         permutation(0);
         System.out.println(max);
     }
-
-    private static void npc(int cnt) { // 순열을 돌리자
-        if(cnt == 9) {
-            baseball();
-            return;
-        }
-        for(int i=0; i<9; i++) {
-            if(isvisited[i]) continue;
-            input[i] = cnt;
-
-            isvisited[i] = true;
-            npc(cnt+1);
-            isvisited[i] = false;
-        }
-    }
-
-    static void permutation(int depth) {
+    static void permutation(int depth) { 
         if (depth == 9) {
             baseball(); return;
         }
